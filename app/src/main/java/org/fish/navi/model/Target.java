@@ -81,6 +81,9 @@ public class Target {
         created = new Date();
     }
 
-
+    @Override
+    public String toString() {
+        return name;
+    }
 }
 

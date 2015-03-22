@@ -23,6 +23,20 @@
             <!--</intent-filter>-->
         </activity>
 
+        <activity
+            android:name=".TargetsActivity"
+            android:label="@string/targets_title" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".TargetActivity"
+            android:label="@string/target_title" />
+
         <receiver
             android:name=".service.LocationReceiver"
             android:exported="false" >
@@ -30,16 +44,5 @@
                 <action android:name="org.fish.navi.service.GpsManager.LOCATION_ACTION" />
             </intent-filter>
         </receiver>
-
-        <activity
-            android:name=".TargetActivity"
-            android:label="@string/title_activity_target" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
     </application>
-
 </manifest>
