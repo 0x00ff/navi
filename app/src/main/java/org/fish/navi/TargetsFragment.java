@@ -1,11 +1,13 @@
 package org.fish.navi;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
-import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import org.fish.navi.model.Target;
 import org.fish.navi.service.Repository;
@@ -23,13 +25,42 @@ public class TargetsFragment extends ListFragment {
 
         targets = Repository.get(getActivity()).getTargets();
 
-        ArrayAdapter<Target> adapter = new ArrayAdapter<Target>(getActivity(), R.layout.list_item, targets);
+        ArrayAdapter<Target> adapter = new TargetAdapter(targets);
         setListAdapter(adapter);
     }
 
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
-        Target c = (Target)(getListAdapter()).getItem(position);
-        Log.d("TargetsFragment", c.getName() + " was clicked");
+        Target target = (Target)(getListAdapter()).getItem(position);
+
+        Intent intent = new Intent(getActivity(), TargetActivity.class);
+        intent.putExtra(TargetFragment.EXTRA_TARGET_ID, target.getId());
+        startActivity(intent);
+    }
+
+    private class TargetAdapter extends ArrayAdapter<Target>{
+        public TargetAdapter(List<Target> targets) {
+            super(getActivity(), 0, targets);
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            if (convertView == null) {
+                convertView = getActivity().getLayoutInflater()
+                        .inflate(R.layout.list_item_target, null);
+            }
+
+            Target target = getItem(position);
+
+            // TODO: set target icon
+
+            TextView titleTextView = (TextView)convertView.findViewById(R.id.target_list_item_name);
+            titleTextView.setText(target.getName());
+
+            TextView categoryTextView = (TextView)convertView.findViewById(R.id.target_list_item_category);
+            categoryTextView.setText(target.getId().toString()); // TODO: get category name here
+
+            return convertView;
+        }
     }
 }

@@ -6,6 +6,7 @@ import org.fish.navi.model.Target;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class Repository {
     private static Repository instance;
@@ -21,6 +22,7 @@ public class Repository {
 
         Target target = new Target();
         target.setName("Test target");
+        target.setComment("Hi there!");
         targets.add(target);
     }
 
@@ -35,5 +37,14 @@ public class Repository {
 
     public List<Target> getTargets() {
         return targets;
+    }
+
+    public Target getTarget(UUID id) {
+        for (Target t : targets) {
+            if (t.getId().equals(id))
+                return t;
+        }
+        return null;
+
     }
 }
