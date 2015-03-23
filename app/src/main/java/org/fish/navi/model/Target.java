@@ -6,6 +6,7 @@ import java.util.UUID;
 public class Target {
     private UUID id;
     private String name;
+    private String category;
     private String comment;
     private double latitude;
     private double longitude;
@@ -24,6 +25,13 @@ public class Target {
     }
     public void setName(String name){
         this.name = name;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public String getComment() {
@@ -64,9 +72,6 @@ public class Target {
     public Date getCreated() {
         return created;
     }
-    public void setCreated(Date created) {
-        this.created = created;
-    }
 
     public Date getModified() {
         return modified;
@@ -79,11 +84,6 @@ public class Target {
     public Target(){
         id = UUID.randomUUID();
         created = new Date();
-    }
-
-    @Override
-    public String toString() {
-        return name;
     }
 }
 

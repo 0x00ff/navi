@@ -13,6 +13,81 @@
         android:layout_height="wrap_content"
         android:id="@+id/target_name"
         android:singleLine="true" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/target_category_label"
+        style="?android:listSeparatorTextViewStyle"/>
+    <AutoCompleteTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/target_category"
+        android:singleLine="true" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/target_latitude_label"
+            style="?android:listSeparatorTextViewStyle"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/target_latitude"
+            android:layout_weight="0.5"
+            android:singleLine="true"
+            android:inputType="number" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/target_longitude_label"
+            style="?android:listSeparatorTextViewStyle"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/target_longitude"
+            android:layout_weight="0.5"
+            android:singleLine="true"
+            android:inputType="number" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/target_altitude_label"
+            style="?android:listSeparatorTextViewStyle"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/target_altitude"
+            android:layout_weight="0.5"
+            android:enabled="false"
+            android:singleLine="true"
+            android:inputType="number" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/target_accuracy_label"
+            style="?android:listSeparatorTextViewStyle"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/target_accuracy"
+            android:layout_weight="0.5"
+            android:enabled="false"
+            android:singleLine="true"
+            android:inputType="number" />
+    </LinearLayout>
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

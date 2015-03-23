@@ -5,6 +5,7 @@ import android.content.Context;
 import org.fish.navi.model.Target;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
@@ -37,6 +38,10 @@ public class Repository {
 
     public List<Target> getTargets() {
         return targets;
+    }
+
+    public List<String> getCategories() {
+        return Arrays.asList("river", "lake", "pond");
     }
 
     public Target getTarget(UUID id) {

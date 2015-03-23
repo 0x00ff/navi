@@ -38,6 +38,12 @@ public class TargetsFragment extends ListFragment {
         startActivity(intent);
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        ((TargetAdapter)getListAdapter()).notifyDataSetChanged();
+    }
+
     private class TargetAdapter extends ArrayAdapter<Target>{
         public TargetAdapter(List<Target> targets) {
             super(getActivity(), 0, targets);
