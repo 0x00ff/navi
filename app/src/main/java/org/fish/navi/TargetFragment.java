@@ -1,6 +1,8 @@
 package org.fish.navi;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -10,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -76,10 +79,13 @@ public class TargetFragment extends Fragment {
 
         gpsManager = GpsManager.instance(getActivity());
 
-        if (getArguments().containsKey(EXTRA_TARGET_ID)) {
-            UUID id = (UUID)getArguments().getSerializable(EXTRA_TARGET_ID);
-            Log.d("TargetFragment", "Going to edit " + id + " target");
+        UUID id = (UUID)getArguments().getSerializable(EXTRA_TARGET_ID);
+        if (id != null) {
             target = Repository.get(getActivity()).getTarget(id);
+        }
+
+        if (target != null) {
+            Log.d("TargetFragment", "Going to edit " + id + " target");
             getActivity().setTitle(R.string.target_update_title);
         } else {
             Log.d("TargetFragment", "Going to create brand new target");
@@ -98,6 +104,10 @@ public class TargetFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState){
         View result = inflater.inflate(R.layout.fragment_target, parent, false);
+
+        //if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+        //    getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);
+        //}
 
         nameField = (EditText)result.findViewById(R.id.target_name);
         nameField.setText(target.getName());
@@ -225,6 +235,19 @@ public class TargetFragment extends Fragment {
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.menu_target, menu);
         super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.target_save_item:
+                Repository.get(getActivity()).setTarget(target);
+                getActivity().setResult(Activity.RESULT_OK, new Intent());
+                getActivity().finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     private void updateUI() {

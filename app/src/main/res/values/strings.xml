@@ -17,5 +17,6 @@
     <string name="target_comment_label">Comment</string>
     <string name="target_invalid_coordinate_message">Invalid value</string>
 
-    <string name="target_save_menu">Save</string>
+    <string name="target_save_menu">Save Target</string>
+    <string name="target_new_menu">New Target</string>
 </resources>

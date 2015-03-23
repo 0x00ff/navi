@@ -3,6 +3,9 @@ package org.fish.navi;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -21,6 +24,7 @@ public class TargetsFragment extends ListFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
         targets = Repository.get(getActivity()).getTargets();
 
         ArrayAdapter<Target> adapter = new TargetAdapter(targets);
@@ -40,6 +44,24 @@ public class TargetsFragment extends ListFragment {
     public void onResume() {
         super.onResume();
         ((TargetAdapter)getListAdapter()).notifyDataSetChanged();
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.menu_targets, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.target_new_item:
+                Intent intent = new Intent(getActivity(), TargetActivity.class);
+                startActivityForResult(intent, 0);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     private class TargetAdapter extends ArrayAdapter<Target>{
@@ -62,7 +84,7 @@ public class TargetsFragment extends ListFragment {
             titleTextView.setText(target.getName());
 
             TextView categoryTextView = (TextView)convertView.findViewById(R.id.target_list_item_category);
-            categoryTextView.setText(target.getId().toString()); // TODO: get category name here
+            categoryTextView.setText(target.getCategory());
 
             return convertView;
         }

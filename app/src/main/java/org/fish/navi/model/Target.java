@@ -5,9 +5,9 @@ import java.util.UUID;
 
 public class Target {
     private UUID id;
-    private String name;
-    private String category;
-    private String comment;
+    private String name = "";
+    private String category = "";
+    private String comment = "";
     private double latitude;
     private double longitude;
     private double altitude;

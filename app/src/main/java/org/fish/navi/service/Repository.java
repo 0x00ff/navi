@@ -18,13 +18,6 @@ public class Repository {
     private Repository(Context context) {
         this.context = context;
         targets = new ArrayList<>();
-
-        //test only
-
-        Target target = new Target();
-        target.setName("Test target");
-        target.setComment("Hi there!");
-        targets.add(target);
     }
 
 
@@ -50,6 +43,21 @@ public class Repository {
                 return t;
         }
         return null;
+    }
 
+    public boolean removeTarget(UUID id) {
+        for (Target t : targets) {
+            if (t.getId().equals(id))
+                return targets.remove(t);
+        }
+        return false;
+    }
+
+    public boolean setTarget(Target target) {
+        if (target == null) throw new NullPointerException();
+
+        //TODO: implement update code
+
+        return targets.add(target);
     }
 }
