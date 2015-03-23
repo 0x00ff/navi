@@ -21,8 +21,6 @@ public class TargetsFragment extends ListFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getActivity().setTitle(R.string.targets_title);
-
         targets = Repository.get(getActivity()).getTargets();
 
         ArrayAdapter<Target> adapter = new TargetAdapter(targets);

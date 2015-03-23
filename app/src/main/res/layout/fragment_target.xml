@@ -91,7 +91,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/comment_label"
+        android:text="@string/target_comment_label"
         style="?android:listSeparatorTextViewStyle"/>
     <EditText
         android:layout_width="match_parent"

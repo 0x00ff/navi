@@ -8,6 +8,8 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -60,6 +62,7 @@ public class TargetFragment extends Fragment {
             protected void onProviderEnabledChanged(boolean enabled) {
                 super.onProviderEnabledChanged(enabled);
 
+                //TODO: introduce gpsmanager indicator
                 //int toastText = enabled ? R.string.gps_enabled : R.string.gps_disabled;
                 //Toast.makeText(getActivity(), toastText, Toast.LENGTH_LONG).show();
             }
@@ -69,6 +72,7 @@ public class TargetFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
 
         gpsManager = GpsManager.instance(getActivity());
 
@@ -76,10 +80,12 @@ public class TargetFragment extends Fragment {
             UUID id = (UUID)getArguments().getSerializable(EXTRA_TARGET_ID);
             Log.d("TargetFragment", "Going to edit " + id + " target");
             target = Repository.get(getActivity()).getTarget(id);
+            getActivity().setTitle(R.string.target_update_title);
         } else {
             Log.d("TargetFragment", "Going to create brand new target");
             target = new Target();
             gpsManager.startLocationUpdates();
+            getActivity().setTitle(R.string.target_create_title);
         }
     }
 
@@ -213,6 +219,12 @@ public class TargetFragment extends Fragment {
         });
 
         return result;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_target, menu);
+        super.onCreateOptionsMenu(menu, inflater);
     }
 
     private void updateUI() {

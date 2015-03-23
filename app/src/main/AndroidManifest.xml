@@ -13,19 +13,9 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
-        <activity
-            android:name=".MainActivity"
-            android:label="@string/app_name" >
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.MAIN" />-->
-
-                <!--<category android:name="android.intent.category.LAUNCHER" />-->
-            <!--</intent-filter>-->
-        </activity>
 
         <activity
-            android:name=".MainPagerActivity"
-            android:label="@string/app_name" >
+            android:name=".MainPagerActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -33,13 +23,9 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name=".TargetsActivity"
-            android:label="@string/targets_title" />
+        <activity android:name=".TargetsActivity" />
 
-        <activity
-            android:name=".TargetActivity"
-            android:label="@string/target_title" />
+        <activity android:name=".TargetActivity" />
 
         <receiver
             android:name=".service.LocationReceiver"
